@@ -9,6 +9,5 @@ wheels/
 # Virtual environments
 .venv
 .env
-chroma_db/
 Assignment.md
 Class2_RAG_Assignment.docx

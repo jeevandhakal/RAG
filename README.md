@@ -20,11 +20,6 @@ Using `uv`:
 uv sync
 ```
 
-Or with `pip`:
-
-```bash
-pip install -r requirements.txt  # if you export one
-```
 
 ## Run
 
