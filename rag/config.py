@@ -1,24 +1,28 @@
+"""Application configuration and settings."""
+
 import os
 from dataclasses import dataclass
 from typing import Optional
 
 from dotenv import load_dotenv
 
-
-# Load environment variables from .env if present
 load_dotenv()
 
 
 @dataclass
 class Settings:
-    """Application settings and runtime configuration."""
+    """Application settings and runtime configuration.
+
+    Paths, processing parameters, and API keys. API keys are loaded from
+    environment variables (e.g., via .env file).
+    """
 
     # Paths
     data_dir: str = "data"
     output_dir: str = "output"
     persist_directory: str = "chroma_db"
 
-    # Processing
+    # Document processing
     chunk_size: int = 1000
     chunk_overlap: int = 200
     k: int = 3
@@ -26,6 +30,11 @@ class Settings:
     # LLM & Embeddings
     model: str = "gemini-2.5-flash"
     temperature: float = 1.0
+
+    # Guardrails & Security (Assignment 3)
+    retrieval_threshold: float = 0.3
+    llm_timeout_seconds: int = 30
+    max_response_words: int = 500
 
     # API keys (loaded from environment)
     jina_api_key: Optional[str] = os.getenv("JINA_API_KEY")
