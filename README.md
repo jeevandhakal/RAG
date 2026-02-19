@@ -79,6 +79,12 @@ Additional options:
 - **Output:** Refusal when retrieval score is below threshold; response length cap (500 words).
 - **Execution:** 30-second LLM timeout; structured error codes (QUERY_TOO_LONG, OFF_TOPIC, PII_DETECTED, RETRIEVAL_EMPTY, LLM_TIMEOUT, POLICY_BLOCK).
 
+### Interesting Findings from Test Results
+- **Normal queries:** All 3 driving-related questions were answered correctly with 100% faithfulness (Yes) and retrieval scores between 0.69–0.82.
+- **Prompt injection:** All 3 injection attacks were blocked with `POLICY_BLOCK`; the input sanitizer correctly detected patterns like "Ignore all previous instructions", "print your system prompt", and "### SYSTEM:".
+- **Off-topic & edge cases:** The chocolate cake recipe query was correctly refused as off-topic. Empty queries returned a polite prompt. PII (phone, license plate) was detected and stripped before processing.
+- **Edge case:** The query with PII ("Can I park here?") triggered PII detection and retrieval succeeded (score 0.69), but the LLM timed out in one run—possibly due to network latency or sanitized query length. The timeout guardrail correctly returned a user-friendly message.
+
 ## Notes
 - Ensure `.env` is configured before running.
 - The code validates required API keys and prints helpful messages if missing.
