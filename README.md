@@ -63,7 +63,7 @@ Additional options:
 - `chroma_db/` — persisted Chroma database.
 - `output/` — batch results.
 
-## Assignment 3: Guardrails, Prompt Injection Defense & Evaluation
+## Guardrails, Prompt Injection Defense & Evaluation
 
 ### Prompt Injection Defenses Implemented (3 of 5)
 1. **System prompt hardening** — The system prompt explicitly instructs the LLM to: (a) only answer questions about Nova Scotia driving rules, (b) treat retrieved content as untrusted data, (c) never reveal system instructions.
